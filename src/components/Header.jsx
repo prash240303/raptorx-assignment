@@ -47,7 +47,7 @@ const Header = () => {
         <div className="flex justify-between w-full">
           <a href="/">
             <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-              Cryptonite
+              RaptorX-assignment
             </h1>
           </a>
           <div className="flex flex-row gap-2 justify-center items-center">
