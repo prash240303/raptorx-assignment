@@ -11,58 +11,40 @@ export const CoinsDataProvider = ({ children }) => {
     status: "idle",
     error: null,
   });
-  const [trendingCoins, setTrendingCoins] = useState({
+  const [coins, setCoins] = useState({
     data: [],
     status: "idle",
     error: null,
   });
-  const [recentlyViewed, setRecentlyViewed] = useState([]);
-  const [watchlist, setWatchlist] = useState([]);
+  const [pinnedCoins, setPinnedCoins] = useState([]);
   useEffect(() => {
     const getDataFromLocalStorage = () => {
       console.log("context fetch from local storage");
-      const watchlist = JSON.parse(localStorage.getItem("watchlist") || "[]");
-      setWatchlist(watchlist);
-      localStorage.setItem("watchlist", JSON.stringify(watchlist));
-      const recentlyViewed = JSON.parse(
-        localStorage.getItem("recentlyViewed") || "[]"
-      );
-      setRecentlyViewed(recentlyViewed);
-      localStorage.setItem("recentlyViewed", JSON.stringify(recentlyViewed));
+      const PinnedCoins = JSON.parse(localStorage.getItem("pinnedCoins") || "[]");
+      setPinnedCoins(PinnedCoins);
+      localStorage.setItem("pinnedCoins", JSON.stringify(PinnedCoins));
+
     };
     getDataFromLocalStorage();
   }, []);
 
-  const updateRecentlyViewed = (coin) => {
-    console.log("running updateRecentlyViewed");
-    let list =
-      JSON.parse(localStorage.getItem("recentlyViewed")) || recentlyViewed;
-    list = list.filter((recent) => recent.id !== coin.id);
-    list.unshift(coin);
-    if (list.length > 5) {
-      list.pop();
-    }
-    setRecentlyViewed(list);
-    localStorage.setItem("recentlyViewed", JSON.stringify(list));
-  };
 
-  const updateWatchlist = (coin) => {
-    console.log("running updateWatch");
-    let list = JSON.parse(localStorage.getItem("watchlist")) || watchlist;
-    if (!list.some((watched) => watched.id === coin.id)) {
+
+  const updatePinnedCoins = (coin) => {
+    console.log("running updatePinnedCoins");
+    let list = JSON.parse(localStorage.getItem("pinnedCoins")) || pinnedCoins;
+    if (!list.some((pinned) => pinned.id === coin.id)) {
       list.unshift(coin);
-      setWatchlist(list);
-      localStorage.setItem("watchlist", JSON.stringify(list));
+      setPinnedCoins(list);
+      localStorage.setItem("pinnedCoins", JSON.stringify(list));
     }
   };
 
   return (
     <MarketDataContext.Provider
       value={{
-        recentlyViewed,
-        watchlist,
-        updateRecentlyViewed,
-        updateWatchlist,
+        pinnedCoins,
+        updatePinnedCoins,
       }}
     >
       {children}

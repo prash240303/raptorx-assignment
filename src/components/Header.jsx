@@ -42,7 +42,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="px-3 md:px-4 py-3 w-full dark:bg-gray-900 bg-neutral-100  mb-2 md:mb-3">
+    <div className="px-3 md:px-4 geist-regular py-3 w-full dark:bg-gray-900 bg-neutral-100  mb-2 md:mb-3">
       <div className="flex justify-between gap-2 md:gap-0 items-center flex-col md:flex-row">
         <div className="flex justify-between w-full">
           <a href="/">
@@ -74,7 +74,7 @@ const Header = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               onFocus={() => setShowDropdown(true)}
-              className="w-full py-2 pl-9 pr-4 text-gray-500 dark:text-slate-100 border rounded-md outline-none bg-gray-50 dark:bg-gray-800 focus:bg-white focus:border-gray-300 dark:focus:border-slate-100"
+              className="w-full py-2 pl-9 pr-4 text-gray-500 dark:text-slate-100 border rounded-md outline-none bg-white dark:bg-gray-800 dark:border-gray-500 focus:bg-white focus:border-gray-500 dark:focus:border-slate-200"
             />
             {showDropdown && (
               <div className="absolute top-full left-0 w-full mt-1 max-h-52 overflow-y-scroll rounded-md bg-gray-50 dark:bg-gray-800 custom-scrollbar shadow-md">

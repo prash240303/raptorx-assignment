@@ -13,7 +13,7 @@ import {
 } from "chart.js";
 import "chartjs-adapter-date-fns";
 import api from "../utils/api";
-import filterData from "../utils/filterData";
+import processFilteredData from "../utils/filterData";
 import { useTheme } from "next-themes";
 import PropTypes from "prop-types";
 
@@ -95,7 +95,7 @@ const MarketChart = ({ coins, isMultiple }) => {
       const ctx = chartRef.current.getContext("2d");
       if (!ctx) return;
 
-      const fildata = filterData(true, marketData.data, selectedOption);
+      const fildata = processFilteredData(true, marketData.data, selectedOption);
 
       if (chartRef.current.chart) {
         chartRef.current.chart.destroy(); // Destroy the previous chart instance
@@ -177,11 +177,15 @@ const MarketChart = ({ coins, isMultiple }) => {
 
   return (
     <div
-      className={`flex justify-center items-center border-2 ${
-        isMultiple
-          ? "border-gray-200 bg-gray-50 dark:border-slate-100 dark:bg-gray-900"
-          : "dark:border-slate-100 dark:bg-gray-900 border-white"
-      }  rounded-md py-4`}
+      className={`
+        w-full overflow-hidden rounded-lg shadow-lg
+        ${isMultiple
+          ? " dark:from-gray-800 dark:to-gray-900"
+          : "bg-white dark:bg-gray-800"}
+        border border-gray-200 dark:border-gray-700
+        transition-all duration-300 ease-in-out
+        hover:shadow-xl
+      `}
     >
       <div className="w-full p-3">
         {marketData.status === "loading" && (
@@ -203,14 +207,14 @@ const MarketChart = ({ coins, isMultiple }) => {
             <canvas ref={chartRef} />
             {
               <div className="flex justify-center items-center gap-2 mt-2">
-                {["24h", "7d", "30d", "3m"].map((option) => (
+                {["24h", "7 days", "30 days", "3 months"].map((option) => (
                   <button
                     key={option}
                     onClick={() => setSelectedOption(option)}
                     className={`px-3 py-1 text-sm rounded-md ${
                       selectedOption === option
                         ? "bg-blue-600 text-white"
-                        : "bg-gray-200 text-gray-800"
+                        : "bg-gray-200  hover:bg-gray-300 text-gray-800"
                     }`}
                   >
                     {option}

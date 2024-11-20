@@ -1,8 +1,31 @@
-# React + Vite
+# React + Vite Project Installation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Installation Steps
 
-Currently, two official plugins are available:
+### Install Dependencies
+```bash
+npm install
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Run Locally
+```bash
+npm run dev
+```
+
+## Environment Setup
+
+### .env Configuration
+Create a `.env` file in your project root with the following variable:
+
+```env
+VITE_GEKO_API_KEY=your_api_key
+```
+
+## Notable Decisions
+
+### Dashboard Configuration Export
+- While a full dashboard configuration export was not implemented, the project includes a solution to Export Context data (Pinned Coins list) as JSON.
+
+- I was not able to utilise React-DND as well, instead used react-useContext hook.
+
+- Layout should automatically adjust when a component is deleted, avoiding gaps and maintaining the grid structure couldnt be implemented.
