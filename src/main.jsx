@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { ThemeProvider } from "next-themes";
 import { CoinsDataProvider } from "./context/CoinDataContext.jsx";
-import MyLayout from "./customLayout.jsx";
+import MyLayout from "./CustomLayout.jsx";
 import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")).render(
