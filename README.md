@@ -1,6 +1,7 @@
 # React + Vite Project Installation
 
 ## Installation Steps
+![image](https://github.com/user-attachments/assets/c1221125-af31-4037-a4aa-98d24c2bfa97)
 
 ### Install Dependencies
 ```bash
